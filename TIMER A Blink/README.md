@@ -1,3 +1,39 @@
+# Timer A Blink
+
+The goal of this lab was to write a program that would control the speed of blinking LEDs with interrupts.
+
+## Code Differences
+The FR2311 does not have a Timer A so Timer B is used. The G2553 uses LPM0 instead of LPM4.
+
+## Implementation
+
+Similair to the other sections of this lab the correct pins need to be initialized as inputs and outputs. 
+
+The following lines of code initialize the Timer.
+```c
+    
+	TA0CTL = TASSEL_1 + MC_1;
+	TA0CCTL0 = 0x10;
+	TA0CCR0 = 12000;
+```
+
+
+The code below shows how to properly set up the interrupt.
+```c
+#pragma vector=TIMER0_A0_VECTOR
+__interrupt void Timer_A(void)
+{
+    P4OUT ^= BIT7;
+    counter++;
+    if(counter == 5){
+        P1OUT ^= BIT0;
+        counter =0;
+    }
+}
+```
+
+
+# Original Assignment
 # TIMER A Blink
 The TIMER peripherals can be used in many situations thanks to it flexibility in features. For this lab, you will be only scratching the surface as to what this peripheral can do. 
 
