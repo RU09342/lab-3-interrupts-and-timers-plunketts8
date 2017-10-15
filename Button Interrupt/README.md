@@ -1,4 +1,38 @@
 # Button Interrupt
+
+The goal of this lab was to write a program that would blink an LED with a button push using interupts.
+
+## Implementation
+
+Similair to the other sections of this lab the correct pins need to be initialized as inputs and outputs. Since there is no interrupts the watchdog timer should be disabled with: 
+
+```c
+	WDTCTL = WDTPW + WDTHOLD or WDTCTL = WDTPW | WDTHOLD
+```
+The pull up or pull down resistor should be enabled and then selected. In the example below the pull up is chosen.
+
+```c
+	P1REN|=BIT1;
+	P1OUT|=BIT1; 
+```
+
+Another important line of code in this program is putting the processor in low power mode. This will save power while the processor waits for the interrupt to occur.
+```c
+    
+	_BIS_SR(LPM4_bits + GIE);
+
+```
+
+When an interrupt occurs the ISR is is entered. The LED is toggled and the delay cycle is started.
+```c
+	#pragma vector=PORT1_VECTOR
+__interrupt void PORT_1(void)
+{	
+```
+
+
+#Original Assignment
+# Button Interrupt
 Last lab you were introduced to the idea of "Polling" where in you would constantly check the status of the P1IN register to see if something has changed. While your code may have worked, it ends up spending a ton of time just checking something that has not changed. What we can do instead is use another two registers available to us from the GPIO peripheral, P1IE and P1IES, to allow our processor to just chill out and wait until something happens to act upon it. Without spending too much space on this README with explanations, what makes these interrupts tick is the following code:
 
 '''c
