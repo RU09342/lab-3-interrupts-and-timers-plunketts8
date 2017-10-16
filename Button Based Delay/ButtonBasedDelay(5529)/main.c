@@ -32,7 +32,12 @@ void main(void)
 
     __enable_interrupt();
     _BIS_SR(LPM4_bits + GIE);
+    
     }
+
+
+
+
 
 #pragma vector=TIMER0_A0_VECTOR
 __interrupt void Timer_A(void)
@@ -46,6 +51,9 @@ __interrupt void Timer_A(void)
 
 }
 
+
+
+
 #pragma vector=PORT1_VECTOR
 __interrupt void PORT_1(void)
 {
@@ -54,14 +62,14 @@ __interrupt void PORT_1(void)
 
     contCount ^= 1;
 
-    if (buttonPressed == 0)
+if (buttonPressed == 0)
     {
         count = 3000;
         buttonPressed = 1;
         P4OUT |= BIT7;
         TA0CCR0 = 1;
     }
-    else if (buttonPressed == 1)
+else if (buttonPressed == 1)
     {
         TA0CCR0 = count;
 

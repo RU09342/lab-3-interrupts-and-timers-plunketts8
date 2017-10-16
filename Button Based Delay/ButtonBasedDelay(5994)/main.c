@@ -31,6 +31,8 @@ void main(void)
     _BIS_SR(LPM4_bits + GIE); // Enter Low Power Mode 4
 }
 
+
+
 #pragma vector=TIMER0_A0_VECTOR
 __interrupt void Timer_A0(void)
 {
@@ -39,6 +41,8 @@ __interrupt void Timer_A0(void)
 
 }
 
+
+
 #pragma vector=PORT5_VECTOR
 __interrupt void PORT_5(void)
 {
@@ -46,7 +50,7 @@ __interrupt void PORT_5(void)
     P5IE &= ~BIT5;
     __delay_cycles(1);
 
-    if (trigger == 0) //Falling-edge of a button
+if (trigger == 0) //Falling-edge of a button
     {
         TA1CTL = TASSEL_1+ MC_3; // Selecting Timer A and Count Continuous
         TA1CCR0 = 0xFFFF; //Initialize value of TA1CCR0
@@ -55,7 +59,8 @@ __interrupt void PORT_5(void)
         TA0CCR0 = 1; //Reset CCR0
 
     }
-    else if (trigger == 1) //Rising-edge of a button
+    
+else if (trigger == 1) //Rising-edge of a button
     {
         TA1CTL = MC_0; //Stop Counting
         TA0CCR0 = TA1R; //Assign new value for CCR0

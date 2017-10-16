@@ -33,6 +33,8 @@ void main(void)
 
 }
 
+
+
 #pragma vector=TIMER0_A0_VECTOR
     __interrupt void Timer_A0(void)
 {
@@ -40,6 +42,8 @@ void main(void)
     P1OUT ^= 0x01;
 
 }
+
+
 
 
 // Timer0 Interrupt Service Routine

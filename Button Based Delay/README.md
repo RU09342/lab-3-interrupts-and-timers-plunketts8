@@ -1,6 +1,6 @@
-# Button Blink
+# Button Based Delay
 
-The goal of this lab was to write a program that would toggle the state of a LED with the push of a button.
+The goal of this lab was to write a program that would implement a timer based interrupt to blink the LED at a user generated frequency.
 
 ## Implementation
 
