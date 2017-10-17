@@ -30,8 +30,8 @@ __interrupt void PORT_1(void)
 {
     P1OUT ^=0x01; // Change state of P1.1
     //Debouncing
-    volatile unsigned int duration = 1000;
-    do (duration--);
-    while (duration != 0);
+    volatile unsigned int time = 1000;
+    do (time--);
+    while (time != 0);
     P1IFG &=~(BIT1); // Clear flag
 }
